@@ -28,6 +28,22 @@ class Club < ApplicationRecord
     match.draw?
   end
 
+  def result_on(year:, result:)
+    year = Date.new(year, 1, 1)
+    count = 0
+    matches.where(kicked_off_at: year.all_year).each do |match|
+      case result
+      when 'won'
+        count += 1  if won?(match)
+      when 'lost'
+        count += 1 if lost?(match)
+      when 'draw'
+        count += 1 if draw?(match)
+      end
+    end
+    count
+  end
+
   def win_on(year)
     year = Date.new(year, 1, 1)
     count = 0
