@@ -54,8 +54,4 @@ class Club < ApplicationRecord
     end
     count
   end
-
-  def homebase
-    "#{hometown}, #{country}"
-  end
 end
